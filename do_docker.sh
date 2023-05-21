@@ -78,6 +78,8 @@ cmd_exists docker || die 'docker was not found'
 echo -e '\e[34mPulling base docker image.\e[39m'
 sudo docker pull ekumenlabs/rosndk
 
+echo "my_loc:$my_loc, output_path:$output_path."
+sudo cp $my_loc/android.toolchain.cmake $output_path/android.toolchain.cmake
 
 if [[ $standard -eq 1 ]]; then
   echo -e '\e[34mSetting output_path to: '$output_path'.\e[39m'

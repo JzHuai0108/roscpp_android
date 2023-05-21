@@ -19,7 +19,7 @@ my_loc="$(cd "$(dirname $0)" && pwd)"
 source $my_loc/config.sh
 source $my_loc/utils.sh
 debugging=0
-skip=0
+skip=0  # if Applying patches has been successful, then set skip to 1 to save some effort.
 portable=0
 help=0
 
@@ -102,6 +102,7 @@ export CMAKE_PREFIX_PATH=$prefix/target
 
 # Get the android ndk build helper script
 # If file doesn't exist, then download and patch it
+echo "prefix:$prefix, my_loc:$my_loc."
 if ! [ -e $prefix/android.toolchain.cmake ]; then
     cd $prefix
     download 'https://raw.githubusercontent.com/taka-no-me/android-cmake/556cc14296c226f753a3778d99d8b60778b7df4f/android.toolchain.cmake'
@@ -291,8 +292,10 @@ if [ $use_pluginlib -ne 0 ]; then
 
     # Install Python libraries that are needed by the scripts
     apt-get install python-lxml -y
-    rosdep init
-    rosdep update
+    mkdir -p /etc/ros/rosdep/sources.list.d
+    cp $my_loc/20-default.list /etc/ros/rosdep/sources.list.d/20-default.list # https://raw.github.com/ros/rosdistro/master/rosdep/sources.list.d/20-default.list
+    # rosdep init  # These two lines cause errors under a network behind a strong firewall.
+    # rosdep update
     pluginlib_helper_file=pluginlib_helper.cpp
     $my_loc/files/pluginlib_helper/pluginlib_helper.py -scanroot $prefix/catkin_ws/src -cppout $my_loc/files/pluginlib_helper/$pluginlib_helper_file
     cp $my_loc/files/pluginlib_helper/$pluginlib_helper_file $prefix/catkin_ws/src/pluginlib/src/
