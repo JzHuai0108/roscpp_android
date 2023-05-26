@@ -28,8 +28,8 @@
     version: curl-7.47.0
 - tar:
     local-name: eigen
-    uri: https://bitbucket.org/eigen/eigen/get/3.3.5.tar.gz
-    version: eigen-eigen-b3f3d4950030
+    uri: https://gitlab.com/libeigen/eigen/-/archive/3.3.5/eigen-3.3.5.tar.gz
+    version: 81bdde70
 - git:
     local-name: flann
     uri: https://github.com/chadrockey/flann_cmake.git

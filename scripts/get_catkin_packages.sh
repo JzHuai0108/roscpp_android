@@ -27,7 +27,7 @@ mkdir -p catkin_ws/src && cd catkin_ws
 
 pushd src
 if [ ! -f .rosinstall ]; then
-  ln -s $rosinstall_file .rosinstall
+  ln -sf $rosinstall_file .rosinstall
 fi
 wstool update -j$PARALLEL_JOBS
 popd

@@ -28,6 +28,8 @@ ENV PATH /opt/android/sdk/tools:/opt/android/sdk/platform-tools:/opt/android/sdk
 
 # Install Python libraries
 RUN apt-get install python-lxml -y
+RUN apt-get install libtool -y
+RUN apt-get install python-wstool -y
 
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
 
