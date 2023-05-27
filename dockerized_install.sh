@@ -15,6 +15,11 @@ echo
 
 python3 $my_loc/download_ros_tar.py $my_loc/ros.rosinstall $my_loc/output/catkin_ws/src
 
+# if opencv3 is failed to build, most likely the cause is the failure to download the xfeature module.
+# You download_opencv_deps.py to download these files, following suggestions from 
+# https://codeantenna.com/a/QjEf9nUtwj
+# python3 $my_loc/download_opencv_deps.py $my_loc/output/catkin_ws
+
 prefix=$my_loc/output
 export SCRIPT_DIR=$my_loc/scripts
 BASE_DIR=$my_loc
@@ -34,3 +39,6 @@ run_cmd() {
 run_cmd apply_patches $my_loc/patches $prefix
 
 $my_loc/docker/run.sh -- /opt/ros_android/install.sh /opt/ros_android/output --samples --skip
+# To download https://downloads.gradle.org/distributions/gradle-4.6-all.zip in the last compiling phrase for android packages,
+# the VPN may need to be turned off.
+
