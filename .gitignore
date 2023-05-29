@@ -7,3 +7,5 @@ files/pluginlib_helper/pluginlib_helper.cpp
 **/.catkin_tools
 **/devel/*
 **/logs/*
+
+example_workspace/target/
