@@ -10,7 +10,8 @@ The result workspace with the code and the compiled libraries will be placed in 
 
 You can use the sample applications as a guide to build an Android app on top of the cross compiled libraries using Catkin, Gradle and CMake.
 
-We have successfully cross compiled everything by tickering with the following workflow.
+We have successfully cross compiled everything by tickering with the following workflow in dockerized_install.sh.
+
 The changes include:
 1. We use the get_library.sh from [ekumenlabs](https://github.com/ekumenlabs/roscpp_android) to download the system dependencies,
 since the wstool failed frequently to download packages in a controlled network.
@@ -21,6 +22,8 @@ This step is done by local_download.sh.
 since the wstool failed frequently to download packages in a controlled network.
 Both local_download.sh and download_ros_tar.py can be invoked multiple times to fix download failures without deleting existing downloads.
 Also, we updated the package paths for convenience with download_ros_tar.py.
+
+3. We write a python script download_opencv_deps.py to download the opencv dependency files such as xfeature resources, and put them to /docker/roscpp_android_ndk/ros_android/output/catkin_ws/src/opencv3/.cache.
 
 ## [Installation - under the hood](#installation)
 

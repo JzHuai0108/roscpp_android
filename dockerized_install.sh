@@ -16,7 +16,7 @@ echo
 python3 $my_loc/download_ros_tar.py $my_loc/ros.rosinstall $my_loc/output/catkin_ws/src
 
 # if opencv3 is failed to build, most likely the cause is the failure to download the xfeature module.
-# You download_opencv_deps.py to download these files, following suggestions from 
+# Use download_opencv_deps.py to download these files, following suggestions from 
 # https://codeantenna.com/a/QjEf9nUtwj
 # python3 $my_loc/download_opencv_deps.py $my_loc/output/catkin_ws
 
