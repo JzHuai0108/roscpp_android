@@ -140,4 +140,4 @@ catkin config \
     -DBOOST_INCLUDEDIR=$TARGET_PATH/include/boost -DBOOST_LIBRARYDIR=$TARGET_PATH/lib \
     -DBUILD_TESTING=OFF -DCATKIN_ENABLE_TESTING=OFF
 
-catkin build --force-cmake --summary $VERBOSE "${CATKIN_ARGS[@]}"
+catkin build --force-cmake --summary $VERBOSE "${CATKIN_ARGS[@]}" -DCMAKE_PREFIX_PATH=$TARGET_PATH

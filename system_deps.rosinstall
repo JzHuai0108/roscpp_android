@@ -32,8 +32,8 @@
     version: 81bdde70
 - git:
     local-name: flann
-    uri: https://github.com/chadrockey/flann_cmake.git
-    version: de1c59fd75479efdf04d3a32988c2fa1061ed7ff
+    uri: https://github.com/JzHuai0108/flann_cmake.git
+    version: bcf4e231bd8e5b79caba6ff449a7a85ab7b33210
 - tar:
     local-name: libiconv
     uri: http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.15.tar.gz
@@ -52,8 +52,8 @@
     version: libogg-1.3.3
 - tar:
     local-name: pcl
-    uri: https://github.com/PointCloudLibrary/pcl/archive/pcl-1.8.1.tar.gz
-    version: pcl-pcl-1.8.1
+    uri: https://github.com/PointCloudLibrary/pcl/archive/pcl-1.11.0.tar.gz
+    version: pcl-pcl-1.11.0
 - tar:
     local-name: poco
     uri: http://pocoproject.org/releases/poco-1.8.0/poco-1.8.0.tar.gz

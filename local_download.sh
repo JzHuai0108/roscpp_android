@@ -4,6 +4,7 @@ LIBS_DIR=$my_loc/output/libs
 prefix=$my_loc/output
 SCRIPT_DIR=$my_loc/scripts
 
+mkdir -p $LIBS_DIR
 source $my_loc/scripts/config.sh
 export OUTPUT_DIR="$prefix"
 export TARGET_DIR=$OUTPUT_DIR/target

@@ -86,10 +86,3 @@ run_cmd() {
 # [ -d $my_loc/files/rospkg ] || run_cmd get_library rospkg $my_loc/files
 
 popd
-
-# Library-specific patches / actions.
-
-# Boost
-pushd $lib_prefix/boost
-[ -d build/out ] || bash -x ./build-android.sh $ANDROID_NDK_HOME --boost=1.68.0 --arch=$ANDROID_ABI
-popd

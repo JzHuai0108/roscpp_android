@@ -160,6 +160,12 @@ export RBA_TOOLCHAIN=$my_loc/cmake/android.toolchain.cmake
 # Get all library dependencies.
 run_cmd get_system_dependencies $my_loc/system_deps.rosinstall $LIBS_DIR
 
+# Library-specific patches / actions.
+# Boost
+pushd $LIBS_DIR/boost
+[ -d build/out ] || bash -x ./build-android.sh $ANDROID_NDK_HOME --boost=1.74.0 --arch=$ANDROID_ABI
+popd
+
 echo
 echo -e '\e[34mGetting ROS packages\e[39m'
 echo

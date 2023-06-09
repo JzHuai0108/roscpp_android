@@ -11,7 +11,7 @@ def checkmd5sum(filename, original_md5_string):
     # original_md5 = '5d41402abc4b2a76b9719d911017c592'
 
     # Open,close, read file and calculate MD5 on its contents
-    with open(file_name, 'rb') as file_to_check:
+    with open(filename, 'rb') as file_to_check:
         # read contents of the file
         data = file_to_check.read()
         # pipe contents of the file through
@@ -19,9 +19,9 @@ def checkmd5sum(filename, original_md5_string):
 
     # Finally compare original MD5 with freshly calculated
     if md5_returned in original_md5_string:
-        return true
+        return True
     else:
-        return false
+        return False
 
 def findUrls(cvdownloadlog):
     urls = []
@@ -33,7 +33,8 @@ def findUrls(cvdownloadlog):
                 for segment in segments:
                     if "https:" in segment:
                         url = segment
-                        urls.append(url)
+                        if url.startswith("http"):
+                            urls.append(url)
 
     uniqueurls = []
     for i, url in enumerate(urls):
@@ -88,6 +89,10 @@ if __name__ == "__main__":
     cvdownloadlog = os.path.join(catkin_ws, "build/opencv3/CMakeDownloadLog.txt")
 
     tmpoutputdir = "/tmp/opencv/"
+    isExist = os.path.exists(tmpoutputdir)
+    if not isExist:
+        os.makedirs(tmpoutputdir)
+
     destdir = os.path.join(catkin_ws, "src/opencv3/.cache")
     print("Downloading opencv dependencies to {}".format(destdir))
 

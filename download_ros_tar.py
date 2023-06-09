@@ -11,17 +11,18 @@ def loadRosPackageList(rosinstallfile):
         lines = f.readlines()
         newentry = False
         for line in lines:
-            if line.startswith("- tar:"):
-                if newentry:
+            if line.startswith("- tar:") or line.startswith('- git:'):
+                if newentry: # save the previous one
                     packages.append([localname, uri])
+                if line.startswith("- tar:"):
+                    newentry = True
+                else:
                     newentry = False
             if line.startswith("    local-name:"):
                 localname = line.split(':')[1].strip()
-                newentry = True
             if line.startswith("    uri:"):
                 uri = line.strip('    uri:').strip()
-                assert uri.endswith(".tar.gz"), "uri must end with .tar.gz, uri:{}".format(uri)
-                newentry = True
+
         if newentry:
             packages.append([localname, uri])
         print("Found {} packages".format(len(packages)))

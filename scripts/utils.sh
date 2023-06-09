@@ -22,9 +22,24 @@ download_bz2() {
     ( cmd_exists curl && curl -L $1 || wget -O - $1 ) | tar jx -C $2
 }
 
+download_bz2_mv() {
+    # usage: download_bz2_mv <url> <target_dir> <src_basename> <dst_basename>
+    echo "downloading $1"
+    ( cmd_exists curl && curl -L $1 || wget -O - $1 ) | tar jx -C $2
+    mv $2/$3 $2/$4
+}
+
+
 download_gz() {
     echo "downloading $1"
     ( cmd_exists curl && curl -L $1 || wget -O - $1 ) | tar zx -C $2
+}
+
+download_gz_mv() {
+    # usage: download_gz_mv <url> <target_dir> <src_basename> <dst_basename>
+    echo "downloading $1"
+    ( cmd_exists curl && curl -L $1 || wget -O - $1 ) | tar zx -C $2
+    mv $2/$3 $2/$4
 }
 
 download_zip() {

@@ -4,6 +4,7 @@ set -e
 
 my_loc="$(cd "$(dirname $0)" && pwd)"
 
+echo -e '\e[34mComment out docker/build.sh if the android_ndk image has been built successfully before.\e[39m'
 # $my_loc/docker/build.sh
 
 chmod +x $my_loc/local_download.sh
