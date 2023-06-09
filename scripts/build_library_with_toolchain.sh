@@ -41,7 +41,9 @@ export PATH=$PATH:$prefix/toolchain/bin
 # Set --host: The system where built programs and libraries will run.
 # (https://www.gnu.org/software/automake/manual/html_node/Cross_002dCompilation.html)
 build=`uname -m`-linux
-host=$(basename $prefix/toolchain/*-linux-android)
+# host=$(basename $prefix/toolchain/*-linux-android)
+host="arm-linux-androideabi"  # corresponding to armeabi-v7a.
+echo "build $build host $host"
 
 # General options to pass to ./configure script
 configure_options="--prefix=$TARGET_DIR --disable-shared --enable-static --build=${build} --host=${host}"

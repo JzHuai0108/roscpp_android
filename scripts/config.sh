@@ -4,7 +4,7 @@
 # Configure the Android NDK and toolchain
 export ANDROID_ABI=armeabi-v7a  # arm64-v8a
 export ANDROID_STL=c++_static       # or c++_shared, see https://developer.android.com/ndk/guides/cpp-support
-export ANDROID_PLATFORM=android-25
+export ANDROID_PLATFORM=android-24
 # android 7.0 is android api level 24
 # Enable this value for debug build
 #CMAKE_BUILD_TYPE=Debug

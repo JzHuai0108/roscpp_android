@@ -52,8 +52,8 @@
     version: libogg-1.3.3
 - tar:
     local-name: pcl
-    uri: https://github.com/PointCloudLibrary/pcl/archive/pcl-1.11.0.tar.gz
-    version: pcl-pcl-1.11.0
+    uri: https://github.com/PointCloudLibrary/pcl/archive/pcl-1.8.1.tar.gz
+    version: pcl-pcl-1.8.1
 - tar:
     local-name: poco
     uri: http://pocoproject.org/releases/poco-1.8.0/poco-1.8.0.tar.gz

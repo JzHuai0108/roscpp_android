@@ -36,4 +36,4 @@ done
 
 cd ../include
 mkdir -p $TARGET_DIR/include
-cp -R boost-1_74/boost $TARGET_DIR/include/
+cp -R boost-1_68/boost $TARGET_DIR/include/

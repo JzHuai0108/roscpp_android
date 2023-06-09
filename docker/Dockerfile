@@ -8,11 +8,11 @@ RUN apt-get update && apt-get install -y wget git unzip tmux python-catkin-tools
 
 # Install Android NDK
 WORKDIR /opt/android/sdk
-RUN wget https://dl.google.com/android/repository/android-ndk-r21e-linux-x86_64.zip
-RUN unzip android-ndk-r21e-linux-x86_64.zip -d /opt/android/sdk
+RUN wget https://dl.google.com/android/repository/android-ndk-r18b-linux-x86_64.zip
+RUN unzip android-ndk-r18b-linux-x86_64.zip -d /opt/android/sdk
 
 # Set-up environment
-ENV ANDROID_NDK_HOME /opt/android/sdk/android-ndk-r21e
+ENV ANDROID_NDK_HOME /opt/android/sdk/android-ndk-r18b
 
 # Install g++ to avoid "CMAKE_CXX_COMPILER-NOTFOUND was not found." error
 RUN apt-get update && apt-get install -y g++ cmake make clang
@@ -30,8 +30,7 @@ ENV PATH /opt/android/sdk/tools:/opt/android/sdk/platform-tools:/opt/android/sdk
 RUN apt-get install python-lxml -y
 RUN apt-get install libtool -y
 RUN apt-get install python-wstool -y
-RUN apt-get install libxext-dev -y  # This is a header only library needed by the SDL video module.
-RUN apt-get install vim -y  # for debugging within a docker container.
+# RUN apt-get install libxext-dev -y  # This is a header only library needed by the SDL video module in ndk-r21e.
 
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
 

@@ -2,13 +2,13 @@
 +++ libs/pcl/CMakeLists.txt
 @@ -1,6 +1,8 @@
  ### ---[ PCL global CMake
- cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
+ cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
  
 +include(android_pcl_config_minimal.cmake)
 +
- if(POLICY CMP0074)
-   # 1. Remove with 3.12.4.
-   # 2. Remove search paths with *_ROOT since they will be automatically checked
+ if(POLICY CMP0017)
+   # Do not include files in CMAKE_MODULE_PATH from files
+   # in CMake module directory. Fix MXE build
 diff --git a/android_pcl_config_minimal.cmake b/android_pcl_config_minimal.cmake
 new file mode 100644
 index 0000000..be84634
@@ -33,30 +33,30 @@ index 0000000..be84634
 +
 --- libs/pcl/PCLConfig.cmake.in
 +++ libs/pcl/PCLConfig.cmake.in
-@@ -559,8 +559,9 @@
+@@ -853,8 +853,9 @@
        set(PCL_${COMPONENT}_LIBRARY ${PCL_${COMPONENT}_LIBRARY_DEBUG})
-     endif()
+     endif(NOT PCL_${COMPONENT}_LIBRARY AND WIN32)
  
 +    # Ignore missing headers
      find_package_handle_standard_args(PCL_${COMPONENT} DEFAULT_MSG
 -      PCL_${COMPONENT}_LIBRARY PCL_${COMPONENT}_INCLUDE_DIR)
 +      PCL_${COMPONENT}_LIBRARY)
-   else()
+   else(_is_header_only EQUAL -1)
      find_package_handle_standard_args(PCL_${COMPONENT} DEFAULT_MSG
-       PCL_${COMPONENT}_INCLUDE_DIR)
-@@ -595,6 +596,7 @@
+       PCL_${COMPONENT}_INCLUDE_DIR)  
+@@ -885,6 +886,7 @@
          list(APPEND PCL_${COMPONENT}_INCLUDE_DIRS ${PCL_${INT_DEP}_INCLUDE_DIRS})
          if(PCL_${INT_DEP}_LIBRARIES)
-           list(APPEND PCL_${COMPONENT}_LINK_LIBRARIES "${PCL_${INT_DEP}_LIBRARIES}")
+           list(APPEND PCL_${COMPONENT}_LIBRARIES "${PCL_${INT_DEP}_LIBRARIES}")
 +          list(APPEND PCL_LIBRARIES "${PCL_${INT_DEP}_LIBRARIES}")
-         endif()
-       endif()
-     endforeach()
+         endif(PCL_${INT_DEP}_LIBRARIES) 
+       endif(PCL_${INT_DEP}_FOUND)
+     endforeach(int_dep)
 --- libs/pcl/cmake/pcl_pclconfig.cmake
 +++ libs/pcl/cmake/pcl_pclconfig.cmake
-@@ -76,6 +76,13 @@
-   endif()
- endforeach()
+@@ -61,6 +61,13 @@
+     endif(_status)
+ endforeach(_ss)
  
 +# For static builds we need to link to the internal library 'pcl_io_ply' explicitly.
 +# ==> We do so by adding io_ply to the list of available components and to pcl_io_int_dep.
@@ -66,6 +66,6 @@ index 0000000..be84634
 +endif()
 +
  #Boost modules
- set(PCLCONFIG_AVAILABLE_BOOST_MODULES "system filesystem date_time iostreams")
+ set(PCLCONFIG_AVAILABLE_BOOST_MODULES "system filesystem thread date_time iostreams")
  if(Boost_SERIALIZATION_FOUND)
-
+ 

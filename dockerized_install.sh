@@ -50,7 +50,20 @@ $my_loc/docker/run.sh -- /opt/ros_android/install.sh /opt/ros_android/output --s
 # 1. To fix the error fatal error: X11/extensions/XShm.h: No such file or directory
 # and the error error: error: conflicting types for ‘_XData32’, refer to
 # https://blog.csdn.net/huierlc/article/details/50165237
+# This error occurred with ndk-r21e but not with ndk-r18b.
 
 # 2. To fix an error "ordered comparison between pointers and zero " in building opencv3
 # we edited the descriptor.cpp file with
 # vim ./output/catkin_ws/src/opencv3/opencv_contrib/stereo/src/descriptor.cpp
+# as below for line 229 - 230.
+# //          CV_Assert(image.size > 0);
+# //          CV_Assert(cost.size > 0);
+# This error occurred with ndk-r21e but not with ndk-r18b.
+
+# 3. cp: cannot stat '/opt/ros_android/output/libs/boost/configs/user-config-boost-1_74_0.jam': No such file or directory
+# The NDK and the boost version is incompatible. Check build-android.sh in boost android for details.
+
+# 4. error: non-constant-expression cannot be narrowed from type 'uint32_t' (aka 'unsigned int') to '__kernel_time_t' (aka 'long') in initializer list 
+
+# update line 254 and line 269 in output/catkin_ws/src/roscpp_core/rostime/src/time.cpp as below.
+# timespec req = { (long)sec, (long)nsec };

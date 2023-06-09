@@ -32,8 +32,8 @@ elif [ $1 == 'boost' ]; then
     # URL=https://github.com/ekumenlabs/Boost-for-Android.git
     URL=https://github.com/moritz-wundke/Boost-for-Android.git
     COMP='git'
-    # HASH='286a548aa9b058402cc88766e818a0218725e163'
-    HASH='c6012c576e30ff6000ddab0988d59bad849200ce'
+    HASH='286a548aa9b058402cc88766e818a0218725e163'
+    # HASH='c6012c576e30ff6000ddab0988d59bad849200ce'
 elif [ $1 == 'bullet' ]; then
     URL=https://github.com/bulletphysics/bullet3/archive/refs/tags/2.83.6.tar.gz
     COMP='gz'
@@ -112,10 +112,10 @@ elif [ $1 == 'orocos_kdl' ]; then
     COMP='gz'
 elif [ $1 == 'pcl' ]; then
     # URL=https://github.com/chadrockey/pcl.git
-    URL=https://github.com/PointCloudLibrary/pcl/archive/pcl-1.11.0.tar.gz
+    URL=https://github.com/PointCloudLibrary/pcl/archive/pcl-1.8.1.tar.gz
     # COMP='git'
     COMP='gz'
-    src_basename='pcl-pcl-1.11.0'
+    src_basename='pcl-pcl-1.8.1'
 elif [ $1 == 'pcrecpp' ]; then
     URL=https://github.com/brianb/pcre-7.8.git
     COMP='git'
