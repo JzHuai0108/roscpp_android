@@ -724,3 +724,7 @@
     local-name: common_tutorials/pluginlib_tutorials
     uri: https://github.com/ros-gbp/common_tutorials-release/archive/release/indigo/pluginlib_tutorials/0.1.8-0.tar.gz
     version: common_tutorials-release-release-indigo-pluginlib_tutorials-0.1.8-0
+- git:
+    local-name: scan_tools
+    uri: https://github.com/CCNYRoboticsLab/scan_tools.git
+    version: indigo
