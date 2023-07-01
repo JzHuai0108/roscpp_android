@@ -12,9 +12,8 @@ if [ $# != 2 ] || [ $1 == '-h' ] || [ $1 == '--help' ]; then
     exit 1
 fi
 output_path=$1
-if [ ! -d $1/roscpp_android_ndk/jni ]; then
-    mkdir -p $1
-    mkdir -p $1/roscpp_android_ndk/jni
+if [ ! -d $1/roscpp_android_ndk ]; then
+    mkdir -p $1/roscpp_android_ndk
 fi
 
 cd $1/roscpp_android_ndk
@@ -29,4 +28,4 @@ else
   cp -r $output_path/target/share ./
 fi
 
-cp $my_loc/files/roscpp_android_ndk/*.mk ./jni/
+cp $my_loc/files/roscpp_android_ndk/*.mk ./

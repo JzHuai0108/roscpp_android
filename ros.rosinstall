@@ -400,10 +400,10 @@
     local-name: navigation/navigation
     uri: https://github.com/ros-gbp/navigation-release/archive/release/kinetic/navigation/1.14.4-0.tar.gz
     version: navigation-release-release-kinetic-navigation-1.14.4-0
-- tar:
-    local-name: navigation/robot_pose_ekf
-    uri: https://github.com/ros-gbp/navigation-release/archive/release/kinetic/robot_pose_ekf/1.14.4-0.tar.gz
-    version: navigation-release-release-kinetic-robot_pose_ekf-1.14.4-0
+# - tar:
+#     local-name: navigation/robot_pose_ekf
+#     uri: https://github.com/ros-gbp/navigation-release/archive/release/kinetic/robot_pose_ekf/1.14.4-0.tar.gz
+#     version: navigation-release-release-kinetic-robot_pose_ekf-1.14.4-0
 - tar:
     local-name: navigation/rotate_recovery
     uri: https://github.com/ros-gbp/navigation-release/archive/release/kinetic/rotate_recovery/1.14.4-0.tar.gz
