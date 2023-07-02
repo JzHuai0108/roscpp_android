@@ -16,7 +16,7 @@ stlibs := xmlrpcpp Bullet3Geometry  boost_stacktrace_basic  diagnostic_aggregato
  opencv_img_hash3  opencv_ccalib3  boost_system  PocoUtild  opencv_tracking3  opencv_superres3  opencv_core3  roslz4  lz4  opencv_surface_matching3  \
  pointcloud_filters  roscpp_serialization  opencv_phase_unwrapping3  compressed_image_transport  compressed_depth_image_transport  \
  move_slow_and_clear  PocoXML  assimp  pcl_kdtree  PocoJSON  opencv_aruco3  cpp_common console_bridge rosconsole_bridge pcl_ros_filters  \
- opencv_ximgproc3  pcl_io  opencv_bgsegm3  boost_exception  pcl_sample_consensus  layers  Bullet3Collision  BulletCollision  \
+ opencv_ximgproc3  pcl_io  opencv_bgsegm3  boost_exception  pcl_sample_consensus  Bullet3Collision  BulletCollision  \
  robot_state_publisher_solver  opencv_imgproc3  depth_image_proc  rosbag  pcl_filters  stereo_image_proc  octomap  pcl_segmentation  \
  opencv_video3  pcl_stereo  rosconsole_android  boost_math_c99  kdl_conversions  boost_prg_exec_monitor  opencv_dnn3  opencv_line_descriptor3  \
  image_transport_plugins  amcl_node amcl_map  opencv_objdetect3  pcl_octree  polled_camera  boost_math_tr1l  boost_math_tr1f  voxel_grid  \
@@ -25,7 +25,7 @@ stlibs := xmlrpcpp Bullet3Geometry  boost_stacktrace_basic  diagnostic_aggregato
  nodeletlib  BulletSoftBody  pcl_keypoints  pcl_ros_segmentation  curl  opencv_features2d3  increment  mean  PocoXMLd  boost_log  cv_bridge  \
  roscpp  rotate_recovery  opencv_photo3  SDL  pcl_ros_features  clear_costmap_recovery  opencv_datasets3  random_numbers  \
  boost_graph  BulletDynamics  iconv  image_rotate  dynamic_reconfigure_config_init_mutex  image_transport  opencv_shape3  octomath  amcl_pf  \
- opencv_flann3  nodelet_math  PocoJSONd  pcl_ros_io  median  rostime  boost_regex  trajectory_planner_ros  message_filters  opencv_videostab3  \
+ opencv_flann3  nodelet_math  PocoJSONd  pcl_ros_io  median  rostime  boost_regex  message_filters  opencv_videostab3  \
  pcl_ml  PocoFoundationd  global_planner  resource_retriever  boost_wserialization  rosconsole  pluginlib  boost_unit_test_framework  \
  opencv_face3  octomap_ros  PocoFoundation  transfer_function  qhullstatic  laser_scan_filters  opencv_stitching3  class_loader  vorbis  \
  urdfdom_model_state  boost_filesystem  geometric_shapes  boost_chrono  boost_serialization  PocoNetd  dwa_local_planner  topic_tools  \
