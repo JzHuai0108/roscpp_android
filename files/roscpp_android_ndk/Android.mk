@@ -13,7 +13,7 @@ stlibs := xmlrpcpp Bullet3Geometry  boost_stacktrace_basic  diagnostic_aggregato
  opencv_structured_light3  urdf  theora  opencv_optflow3  params  qhullcpp  uuid  pcl_surface  map_server2  map_server_image_loader \
  rosconsole_backend_interface  urdfdom_model  LinearMath  tf2_ros  Bullet3OpenCL_clew  vorbisenc  pcl_features  pluginlib_tutorials  \
  tf_conversions  opencv_fuzzy3  pcl_registration  opencv_saliency3  boost_test_exec_monitor  theoradec  boost_stacktrace_noop  \
- opencv_img_hash3  opencv_ccalib3  boost_system  PocoUtild  opencv_tracking3  opencv_superres3  opencv_core3  roslz4  lz4  opencv_surface_matching3  \
+ opencv_img_hash3  opencv_ccalib3  boost_system  PocoUtild  opencv_tracking3  opencv_superres3 als_mcl opencv_core3  roslz4  lz4  opencv_surface_matching3  \
  pointcloud_filters  roscpp_serialization  opencv_phase_unwrapping3  compressed_image_transport  compressed_depth_image_transport  \
  move_slow_and_clear  PocoXML  assimp  pcl_kdtree  PocoJSON  opencv_aruco3  cpp_common console_bridge rosconsole_bridge pcl_ros_filters  \
  opencv_ximgproc3  pcl_io  opencv_bgsegm3  boost_exception  pcl_sample_consensus  Bullet3Collision  BulletCollision  \
@@ -51,8 +51,8 @@ LOCAL_MODULE    := roscpp_android_ndk
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/include
 LOCAL_EXPORT_CPPFLAGS := -fexceptions -frtti
 LOCAL_CPP_FEATURES := exceptions
-LOCAL_EXPORT_LDLIBS := $(foreach l,$(stlibs),-l$(l)) -L$(LOCAL_PATH)/lib
-LOCAL_EXPORT_LDLIBS += -L$(LOCAL_PATH)/share/OpenCV-3.3.1-dev/3rdparty/lib -ltegra_hal
+LOCAL_EXPORT_LDLIBS := $(foreach l,$(stlibs),-l$(l)) -L$(LOCAL_PATH)/lib -lz
+LOCAL_EXPORT_LDLIBS += -L$(LOCAL_PATH)/share/OpenCV-3.3.1-dev/3rdparty/lib -ltegra_hal -lcpufeatures
 LOCAL_STATIC_LIBRARIES := $(stlibs) c++_static
 
 include $(BUILD_STATIC_LIBRARY)
