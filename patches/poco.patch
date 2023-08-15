@@ -148,7 +148,7 @@
 +} // namespace Poco
 --- /dev/null
 +++ libs/poco/build/config/Android_static
-@@ -0,0 +1,91 @@
+@@ -0,0 +1,100 @@
 +#
 +# $Id: //poco/1.4/build/config/Android#3 $
 +#
@@ -161,21 +161,30 @@
 +# General Settings
 +#
 +LINKMODE           ?= STATIC
-+ANDROID_ABI        ?= armeabi-v7a
++ANDROID_ABI        ?= arm64-v8a
 +POCO_TARGET_OSNAME  = Android
 +POCO_TARGET_OSARCH  = $(ANDROID_ABI)
 +
 +ifeq ($(ANDROID_ABI),arm64-v8a)
-+TOOL      = aarch64-linux-android
++TOOL      = aarch64-linux-android31
++ARLIB     = llvm-ar
++STRIPLIB  = llvm-strip
++RANLIBIN    = llvm-ranlib
 +# ARCHFLAGS = 
 +else
 +ifeq ($(ANDROID_ABI),armeabi-v7a)
 +TOOL      = arm-linux-androideabi
++ARLIB     = $(TOOL)-ar
++STRIPLIB  = $(TOOL)-strip
++RANLIBIN    = $(TOOL)-ranlib
 +ARCHFLAGS = -mthumb
 +LINKFLAGS = -Wl,--fix-cortex-a8
 +else
 +ifeq ($(ANDROID_ABI),x86)
 +TOOL      = i686-linux-android
++ARLIB     = $(TOOL)-ar
++STRIPLIB  = $(TOOL)-strip
++RANLIBIN    = $(TOOL)-ranlib
 +ARCHFLAGS = -march=i686 -msse3 -mstackrealign -mfpmath=sse
 +else
 +$(error Invalid ABI specified in ANDROID_ABI)
@@ -189,9 +198,9 @@
 +CC      = $(TOOL)-clang
 +CXX     = $(TOOL)-clang++
 +LINK    = $(CXX)
-+STRIP   = $(TOOL)-strip
-+LIB     = $(TOOL)-ar -cr
-+RANLIB  = $(TOOL)-ranlib
++STRIP   = $(STRIPLIB)
++LIB     = $(ARLIB) -cr
++RANLIB  = $(RANLIBIN)
 +SHLIB   = $(CXX) -shared -Wl,-soname,$(notdir $@) -o $@
 +SHLIBLN = $(POCO_BASE)/build/script/shlibln
 +DEP     = $(POCO_BASE)/build/script/makedepend.clang

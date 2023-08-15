@@ -33,16 +33,19 @@ elif [ "arm64-v8a" = $ANDROID_ABI ]; then
     arch="arm64"
 fi
 
-if [ ! -d toolchain/ ]; then
-  $ANDROID_NDK_HOME/build/tools/make-standalone-toolchain.sh --install-dir=./toolchain --arch=$arch --platform=${ANDROID_PLATFORM} --stl=${ANDROID_STL}
-fi
-export PATH=$PATH:$prefix/toolchain/bin
+#if [ ! -d toolchain/ ]; then
+#  $ANDROID_NDK_HOME/build/tools/make-standalone-toolchain.sh --install-dir=./toolchain --arch=$arch --platform=${ANDROID_PLATFORM} --stl=${ANDROID_STL}
+#fi
+# export PATH=$PATH:$prefix/toolchain/bin
+export PATH=$PATH:$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin
 
 # Set --host: The system where built programs and libraries will run.
 # (https://www.gnu.org/software/automake/manual/html_node/Cross_002dCompilation.html)
 build=`uname -m`-linux
 # host=$(basename $prefix/toolchain/*-linux-android)
-host="arm-linux-androideabi"  # corresponding to armeabi-v7a.
+# host="arm-linux-androideabi"  # corresponding to armeabi-v7a.
+host="aarch64-linux-android"  # corresponding to arm64-v8a.
+
 echo "build $build host $host"
 
 # General options to pass to ./configure script
@@ -59,6 +62,7 @@ elif [ "$1" == 'sdl' ]; then
     # Update old config.sub and config.guess
     cp /usr/share/automake*/config* build-scripts/
     # Update ./configure
+    export CFLAGS=-DSDL_VIDEO_DRIVER_X11_CONST_PARAM_XDATA32
     ./autogen.sh
 elif [ "$1" == 'sdl-image' ]; then
     # Update old config.sub and config.guess

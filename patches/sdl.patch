@@ -1,0 +1,20 @@
+--- libs/sdl/src/video/x11/SDL_x11sym.h	2012-01-19 14:30:06.000000000 +0800
++++ libs/sdl/src/video/x11/SDL_x11sym.h	2023-08-15 17:48:18.461239158 +0800
+@@ -165,8 +165,15 @@
+  */
+ #ifdef LONG64
+ SDL_X11_MODULE(IO_32BIT)
+-SDL_X11_SYM(int,_XData32,(Display *dpy,register long *data,unsigned len),(dpy,data,len),return)
+-SDL_X11_SYM(void,_XRead32,(Display *dpy,register long *data,long len),(dpy,data,len),)
++#if SDL_VIDEO_DRIVER_X11_CONST_PARAM_XDATA32
++SDL_X11_SYM(int,_XData32,(Display *dpy,register _Xconst long *data,unsigned
++len),(dpy,data,len),return)
++#else
++SDL_X11_SYM(int,_XData32,(Display *dpy,register long *data,unsigned len),
++(dpy,data,len),return)
++#endif
++SDL_X11_SYM(void,_XRead32,(Display *dpy,register long *data,long len),
++(dpy,data,len),)
+ #endif
+ 
+ /*

@@ -1,0 +1,64 @@
+--- libs/pcl/CMakeLists.txt
++++ libs/pcl/CMakeLists.txt
+@@ -1,6 +1,8 @@
+ ### ---[ PCL global CMake
+ cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
+ 
++include(android_pcl_config_minimal.cmake)
++
+ if(POLICY CMP0074)
+   # 1. Remove with 3.12.4.
+   # 2. Remove search paths with *_ROOT since they will be automatically checked
+--- libs/pcl/PCLConfig.cmake.in
++++ libs/pcl/PCLConfig.cmake.in
+@@ -560,7 +560,7 @@ foreach(component ${PCL_TO_FIND_COMPONENTS})
+     endif()
+ 
+     find_package_handle_standard_args(PCL_${COMPONENT} DEFAULT_MSG
+-      PCL_${COMPONENT}_LIBRARY PCL_${COMPONENT}_INCLUDE_DIR)
++      PCL_${COMPONENT}_LIBRARY)
+   else()
+     find_package_handle_standard_args(PCL_${COMPONENT} DEFAULT_MSG
+       PCL_${COMPONENT}_INCLUDE_DIR)
+@@ -595,6 +595,7 @@ foreach(component ${PCL_TO_FIND_COMPONENTS})
+         list(APPEND PCL_${COMPONENT}_INCLUDE_DIRS ${PCL_${INT_DEP}_INCLUDE_DIRS})
+         if(PCL_${INT_DEP}_LIBRARIES)
+           list(APPEND PCL_${COMPONENT}_LINK_LIBRARIES "${PCL_${INT_DEP}_LIBRARIES}")
++          list(APPEND PCL_LIBRARIES "${PCL_${INT_DEP}_LIBRARIES}")
+         endif()
+       endif()
+     endforeach()
+--- /dev/null
++++ libs/pcl/android_pcl_config_minimal.cmake
+@@ -0,0 +1,15 @@
++set(WITH_FZAPI FALSE CACHE BOOL "fzapi: disabled (forced)" FORCE)
++set(WITH_LIBUSB FALSE CACHE BOOL "libusb: disabled (forced)" FORCE)
++set(WITH_OPENGL FALSE CACHE BOOL "qt: disabled (forced)" FORCE)
++set(WITH_OPENNI FALSE CACHE BOOL "openni: disabled (forced)" FORCE)
++set(WITH_OPENNI2 FALSE CACHE BOOL "openni2: disabled (forced)" FORCE)
++set(WITH_PCAP FALSE CACHE BOOL "pcap: disabled (forced)" FORCE)
++set(WITH_PXCAPI FALSE CACHE BOOL "pxcapi: disabled (forced)" FORCE)
++set(WITH_QT FALSE CACHE BOOL "qt: disabled (forced)" FORCE)
++set(WITH_VTK FALSE CACHE BOOL "vtk: disabled (forced)" FORCE)
++set(BUILD_apps FALSE CACHE BOOL "apps: disabled (forced)" FORCE)
++set(BUILD_tools FALSE CACHE BOOL "tools: disabled (forced)" FORCE)
++set(BUILD_tracking FALSE CACHE BOOL "tracking: disabled (forced)" FORCE)
++
++set(HAVE_MM_MALLOC_EXITCODE "2" CACHE STRING "Result from TRY_RUN for HAVE_MM_MALLOC" FORCE)
++set(HAVE_POSIX_MEMALIGN_EXITCODE "2" CACHE STRING "Result from TRY_RUN for HAVE_POSIX_MEMALIGN" FORCE)
+--- libs/pcl/cmake/pcl_pclconfig.cmake
++++ libs/pcl/cmake/pcl_pclconfig.cmake
+@@ -76,6 +76,13 @@ foreach(_ss ${PCL_SUBSYSTEMS_MODULES})
+   endif()
+ endforeach()
+ 
++# For static builds we need to link to the internal library 'pcl_io_ply' explicitly.
++# ==> We do so by adding io_ply to the list of available components and to pcl_io_int_dep.
++if(NOT PCL_SHARED_LIBS)
++  set(PCLCONFIG_AVAILABLE_COMPONENTS "${PCLCONFIG_AVAILABLE_COMPONENTS} io_ply")
++  set(PCLCONFIG_INTERNAL_DEPENDENCIES "${PCLCONFIG_INTERNAL_DEPENDENCIES}list(APPEND pcl_io_int_dep io_ply)\n")
++endif()
++
+ #Boost modules
+ set(PCLCONFIG_AVAILABLE_BOOST_MODULES "system filesystem date_time iostreams")
+ if(Boost_SERIALIZATION_FOUND)
