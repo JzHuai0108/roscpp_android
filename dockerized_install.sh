@@ -48,6 +48,7 @@ $my_loc/docker/run.sh -- /opt/ros_android/install.sh /opt/ros_android/output --s
 # and the error error: error: conflicting types for ‘_XData32’, refer to
 # https://sites.google.com/site/buildcodeproject/blog/sdl12
 # This error occurred with ndk-r21e but not with ndk-r18b.
+# also see https://www.linuxquestions.org/questions/linux-from-scratch-13/can%27t-compile-sdl-4175469154/
 
 # 2. To fix an error "ordered comparison between pointers and zero " in building opencv3
 # we edited the descriptor.cpp file with
@@ -72,3 +73,70 @@ $my_loc/docker/run.sh -- /opt/ros_android/install.sh /opt/ros_android/output --s
 # 6. use diff and patch together for two files.
 # https://www.techtarget.com/searchdatacenter/tip/An-introduction-to-using-diff-and-patch-together?Offer=abt_pubpro_AI-Insider
 # we may also use git diff and patch for better efficiency with multiple files.
+
+# 7. Could not find the following Boost libraries: boost_signals
+# Some (but not all) of the required Boost libraries were found.
+# https://answers.ros.org/question/333142/boost_signals-library-not-found/
+# remove signals for the ros_comm library (message_filters and roscpp CMakeLists.txt files) and geometry (tf CMakeLists.txt).
+# geometry2 / tf2
+# geometry / tf
+# ros_comm / message_filters
+# ros_comm / roscpp
+# image_pipeline / image_view
+# laser_assembler
+# laser_filters
+
+# 8. /opt/ros_android/output/catkin_ws/src/ros_comm/roscpp/include/ros/timer_manager.h:475:68: error: use of undeclared identifier '_1'
+# /media/jhuai/docker/roscpp_android_ndk/ros_android/output/catkin_ws/src/ros_comm/roscpp/src/libros/connection_manager.cpp
+# add the following line to the top of the file, after the header includes:
+# #include <boost/bind/bind.hpp>
+# using namespace boost::placeholders;
+
+# 9. error: /opt/ros_android/output/target/lib/libSDL.a(SDL_error.o) is incompatible with aarch64linux
+# Answer: fix by export CC.
+# To check the arch version for a library, use eg.
+# readelf -h libSDL.a | grep -i "class\|machine" | head -2
+
+# 10. CMAKE Error:
+# CMake Error at /opt/ros_android/output/target/share/catkin/cmake/catkin_libraries.cmake:146 (get_target_property):
+#   INTERFACE_LIBRARY targets may only have whitelisted properties.  The
+#   property "IMPORTED_LOCATION_pcl_2d_imported_configurations-NOTFOUND" is not
+#   allowed.
+# Call Stack (most recent call first):
+#   /opt/ros_android/output/target/share/catkin/cmake/catkin_libraries.cmake:191 (catkin_replace_imported_library_targets)
+#   /opt/ros_android/output/target/share/catkin/cmake/catkin_package.cmake:258 (catkin_replace_imported_library_targets)
+#   /opt/ros_android/output/target/share/catkin/cmake/catkin_package.cmake:102 (_catkin_package)
+#   CMakeLists.txt:81 (catkin_package)
+
+
+# CMake Error at /opt/ros_android/output/target/share/catkin/cmake/catkin_libraries.cmake:140 (get_target_property):
+#   INTERFACE_LIBRARY targets may only have whitelisted properties.  The
+#   property "IMPORTED_LOCATION" is not allowed.
+# Call Stack (most recent call first):
+#   /opt/ros_android/output/target/share/catkin/cmake/catkin_libraries.cmake:191 (catkin_replace_imported_library_targets)
+#   /opt/ros_android/output/target/share/catkin/cmake/catkin_package.cmake:258 (catkin_replace_imported_library_targets)
+#   /opt/ros_android/output/target/share/catkin/cmake/catkin_package.cmake:102 (_catkin_package)
+#   CMakeLists.txt:81 (catkin_package)
+
+
+# CMake Error at /opt/ros_android/output/target/share/catkin/cmake/catkin_libraries.cmake:144 (get_target_property):
+#   INTERFACE_LIBRARY targets may only have whitelisted properties.  The
+#   property "IMPORTED_CONFIGURATIONS" is not allowed.
+# Call Stack (most recent call first):
+#   /opt/ros_android/output/target/share/catkin/cmake/catkin_libraries.cmake:191 (catkin_replace_imported_library_targets)
+#   /opt/ros_android/output/target/share/catkin/cmake/catkin_package.cmake:258 (catkin_replace_imported_library_targets)
+#   /opt/ros_android/output/target/share/catkin/cmake/catkin_package.cmake:102 (_catkin_package)
+#   CMakeLists.txt:81 (catkin_package)
+
+
+# CMake Error at /opt/ros_android/output/target/share/catkin/cmake/catkin_libraries.cmake:146 (get_target_property):
+#   INTERFACE_LIBRARY targets may only have whitelisted properties.  The
+#   property "IMPORTED_LOCATION_pcl_geometry_imported_configurations-NOTFOUND"
+#   is not allowed.
+# Call Stack (most recent call first):
+#   /opt/ros_android/output/target/share/catkin/cmake/catkin_libraries.cmake:191 (catkin_replace_imported_library_targets)
+#   /opt/ros_android/output/target/share/catkin/cmake/catkin_package.cmake:258 (catkin_replace_imported_library_targets)
+#   /opt/ros_android/output/target/share/catkin/cmake/catkin_package.cmake:102 (_catkin_package)
+#   CMakeLists.txt:81 (catkin_package)
+
+# Fixed by comment out PCL in catkin_package DEPENDS.

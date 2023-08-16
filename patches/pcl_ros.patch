@@ -1,0 +1,11 @@
+--- catkin_ws/src/perception_pcl/pcl_ros/CMakeLists.txt	2018-05-17 14:03:06.000000000 +0800
++++ catkin_ws/src/perception_pcl/pcl_ros/CMakeLists.txt	2023-08-16 17:51:52.479646005 +0800
+@@ -99,7 +99,7 @@
+   DEPENDS
+     Boost
+     EIGEN3
+-    PCL
++    # PCL
+ )
+ 
+ ## Declare the pcl_ros_tf library
