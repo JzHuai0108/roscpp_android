@@ -4,7 +4,7 @@ LOCAL_PATH := $(call my-dir)
 # If in jni ndk-build, the undefined reference errors arise, make sure that the order of libraries follow the above rule.
 stlibs := xmlrpcpp Bullet3Geometry  boost_stacktrace_basic  diagnostic_aggregator  pcl_recognition  orocos-bfl  yaml-cpp  \
  boost_math_tr1  charset  amcl_sensors  base_local_planner  theoraenc  vorbisfile  orocos-kdl  opencv_imgcodecs3  opencv_xobjdetect3  \
- opencv_videoio3  SDLmain  boost_signals  image_publisher  SDL_image  image_proc  opencv_reg3  xml2  camera_calibration_parsers  \
+ opencv_videoio3  SDLmain  image_publisher  SDL_image  image_proc  opencv_reg3  xml2  camera_calibration_parsers  \
  move_base  boost_container  joint_state_listener  boost_context  bondcpp  boost_math_c99f  camera_info_manager  opencv_calib3d3  \
  boost_math_c99l  navfn  tinyxml2  pcl_io_ply  boost_iostreams  opencv_xfeatures2d3  opencv_stereo3  urdfdom_world  boost_thread  \
  eigen_conversions  roslib  rospack  boost_program_options  boost_coroutine  pcl_common  opencv_xphoto3  PocoNet  boost_timer  Bullet3Dynamics  \

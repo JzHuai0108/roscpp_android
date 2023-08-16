@@ -1,0 +1,20 @@
+--- catkin_ws/src/roscpp_core/rostime/src/time.cpp	2018-08-24 02:48:52.000000000 +0800
++++ catkin_ws/src/roscpp_core/rostime/src/time.cpp	2023-06-09 17:43:40.306900000 +0800
+@@ -251,7 +251,7 @@
+       }
+     return 0;
+ #else
+-    timespec req = { sec, nsec };
++    timespec req = { (long)sec, (long)nsec };
+     return nanosleep(&req, NULL);
+ #endif
+   }
+@@ -266,7 +266,7 @@
+ #if defined(WIN32)
+     ros_nanosleep(sec,nsec);
+ #else
+-    timespec req = { sec, nsec };
++    timespec req = { (long)sec, (long)nsec };
+     timespec rem = {0, 0};
+     while (nanosleep(&req, &rem) && !g_stopped)
+       {

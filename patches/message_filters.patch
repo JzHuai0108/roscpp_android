@@ -1,0 +1,11 @@
+--- catkin_ws/src/ros_comm/message_filters/CMakeLists.txt	2018-08-24 02:49:08.000000000 +0800
++++ catkin_ws/src/ros_comm/message_filters/CMakeLists.txt	2023-08-15 18:42:46.402537416 +0800
+@@ -13,7 +13,7 @@
+ )
+ catkin_python_setup()
+ 
+-find_package(Boost REQUIRED COMPONENTS signals thread)
++find_package(Boost REQUIRED COMPONENTS thread)
+ 
+ include_directories(include ${catkin_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS})
+ link_directories(${catkin_LIBRARY_DIRS})

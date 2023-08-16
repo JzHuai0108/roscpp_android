@@ -1,0 +1,11 @@
+--- catkin_ws/src/laser_filters/CMakeLists.txt	2017-09-07 09:29:26.000000000 +0800
++++ catkin_ws/src/laser_filters/CMakeLists.txt	2023-08-15 18:42:29.590486102 +0800
+@@ -9,7 +9,7 @@
+   laser_geometry pluginlib angles)
+ 
+ find_package(catkin REQUIRED COMPONENTS ${THIS_PACKAGE_ROS_DEPS})
+-find_package(Boost REQUIRED COMPONENTS system signals)
++find_package(Boost REQUIRED COMPONENTS system)
+ include_directories(include ${catkin_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS})
+ 
+ ##############################################################################

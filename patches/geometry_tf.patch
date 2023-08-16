@@ -1,0 +1,11 @@
+--- catkin_ws/src/geometry/tf/CMakeLists.txt	2017-07-15 16:03:25.000000000 +0800
++++ catkin_ws/src/geometry/tf/CMakeLists.txt	2023-08-15 18:42:47.302540161 +0800
+@@ -13,7 +13,7 @@
+     std_msgs
+     tf2_ros
+ )
+-find_package(Boost REQUIRED COMPONENTS thread signals system)
++find_package(Boost REQUIRED COMPONENTS thread system)
+ 
+ catkin_python_setup()
+ 

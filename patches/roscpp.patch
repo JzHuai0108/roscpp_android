@@ -1,0 +1,35 @@
+--- catkin_ws/src/ros_comm/roscpp/include/ros/timer_manager.h	2018-08-24 02:49:48.000000000 +0800
++++ catkin_ws/src/ros_comm/roscpp/include/ros/timer_manager.h	2023-08-15 18:57:30.394698036 +0800
+@@ -57,6 +57,9 @@
+ #include <vector>
+ #include <list>
+ 
++#include <boost/bind/bind.hpp>
++using namespace boost::placeholders;
++
+ namespace ros
+ {
+ 
+--- catkin_ws/src/ros_comm/roscpp/src/libros/connection_manager.cpp	2018-08-24 02:49:48.000000000 +0800
++++ catkin_ws/src/ros_comm/roscpp/src/libros/connection_manager.cpp	2023-08-15 19:00:59.867945359 +0800
+@@ -36,6 +36,8 @@
+ #include "ros/network.h"
+ 
+ #include <ros/assert.h>
++#include <boost/bind/bind.hpp>
++using namespace boost::placeholders;
+ 
+ namespace ros
+ {
+
+--- catkin_ws/src/ros_comm/roscpp/CMakeLists.txt	2018-08-24 02:49:48.000000000 +0800
++++ catkin_ws/src/ros_comm/roscpp/CMakeLists.txt	2023-08-15 18:40:42.238156899 +0800
+@@ -22,7 +22,7 @@
+ 
+ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/include/ros/common.h.in ${CATKIN_DEVEL_PREFIX}/${CATKIN_GLOBAL_INCLUDE_DESTINATION}/ros/common.h)
+ 
+-find_package(Boost REQUIRED COMPONENTS chrono filesystem signals system)
++find_package(Boost REQUIRED COMPONENTS chrono filesystem system)
+ 
+ include_directories(include ${CATKIN_DEVEL_PREFIX}/${CATKIN_GLOBAL_INCLUDE_DESTINATION}/ros ${catkin_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS})
+ 

@@ -112,3 +112,17 @@
 
 
  # Find libm, if available
+
+--- catkin_ws/src/opencv3/opencv_contrib/stereo/src/descriptor.cpp	2018-03-15 09:02:28.000000000 +0800
++++ catkin_ws/src/opencv3/opencv_contrib/stereo/src/descriptor.cpp	2023-08-15 18:26:25.771331899 +0800
+@@ -226,8 +226,8 @@
+         //integral image computation used in the Mean Variation Census Transform
+         void imageMeanKernelSize(const Mat &image, int windowSize, Mat &cost)
+         {
+-            CV_Assert(image.size > 0);
+-            CV_Assert(cost.size > 0);
++           // CV_Assert(image.size > 0);
++           // CV_Assert(cost.size > 0);
+             CV_Assert(windowSize % 2 != 0);
+             int win = windowSize / 2;
+             float scalling = ((float) 1) / (windowSize * windowSize);

@@ -43,6 +43,14 @@ $my_loc/docker/run.sh -- /opt/ros_android/install.sh /opt/ros_android/output --s
 # To download https://downloads.gradle.org/distributions/gradle-4.6-all.zip in the last compiling phrase for android packages,
 # the VPN may need to be turned off.
 
+# Tools
+# 1. use diff and patch together for two files.
+# https://www.techtarget.com/searchdatacenter/tip/An-introduction-to-using-diff-and-patch-together?Offer=abt_pubpro_AI-Insider
+# we may also use git diff and patch for better efficiency with multiple files.
+
+# 2. To check the arch version for a library, use eg.
+# readelf -h libSDL.a | grep -i "class\|machine" | head -2
+
 # Troubleshooting
 # 1. To fix the error fatal error: X11/extensions/XShm.h: No such file or directory
 # and the error error: error: conflicting types for ‘_XData32’, refer to
@@ -51,8 +59,7 @@ $my_loc/docker/run.sh -- /opt/ros_android/install.sh /opt/ros_android/output --s
 # also see https://www.linuxquestions.org/questions/linux-from-scratch-13/can%27t-compile-sdl-4175469154/
 
 # 2. To fix an error "ordered comparison between pointers and zero " in building opencv3
-# we edited the descriptor.cpp file with
-# vim ./output/catkin_ws/src/opencv3/opencv_contrib/stereo/src/descriptor.cpp
+# we patched the catkin_ws/src/opencv3/opencv_contrib/stereo/src/descriptor.cpp
 # as below for line 229 - 230.
 # //          CV_Assert(image.size > 0);
 # //          CV_Assert(cost.size > 0);
@@ -63,21 +70,19 @@ $my_loc/docker/run.sh -- /opt/ros_android/install.sh /opt/ros_android/output --s
 
 # 4. error: non-constant-expression cannot be narrowed from type 'uint32_t' (aka 'unsigned int') to '__kernel_time_t' (aka 'long') in initializer list 
 
-# update line 254 and line 269 in output/catkin_ws/src/roscpp_core/rostime/src/time.cpp as below.
+# We patched line 254 and line 269 in output/catkin_ws/src/roscpp_core/rostime/src/time.cpp as below.
 # timespec req = { (long)sec, (long)nsec };
 
 # 5. pcl and boost error /opt/ros_android/output/libs/pcl/common/include/pcl/PCLPointCloud2.h:11:10: fatal error: 'boost/detail/endian.hpp' file not found
-#include <boost/detail/endian.hpp>
-# upgrade pcl to the one using an alternative header.
-
-# 6. use diff and patch together for two files.
-# https://www.techtarget.com/searchdatacenter/tip/An-introduction-to-using-diff-and-patch-together?Offer=abt_pubpro_AI-Insider
-# we may also use git diff and patch for better efficiency with multiple files.
+# #include <boost/detail/endian.hpp>
+# upgrade pcl to the version 1.10.1 that using the above alternative header.
 
 # 7. Could not find the following Boost libraries: boost_signals
 # Some (but not all) of the required Boost libraries were found.
+
 # https://answers.ros.org/question/333142/boost_signals-library-not-found/
-# remove signals for the ros_comm library (message_filters and roscpp CMakeLists.txt files) and geometry (tf CMakeLists.txt).
+# We patch the following package by removing signals for the ros_comm library 
+# (message_filters and roscpp CMakeLists.txt files) and geometry (tf CMakeLists.txt).
 # geometry2 / tf2
 # geometry / tf
 # ros_comm / message_filters
@@ -86,16 +91,15 @@ $my_loc/docker/run.sh -- /opt/ros_android/install.sh /opt/ros_android/output --s
 # laser_assembler
 # laser_filters
 
-# 8. /opt/ros_android/output/catkin_ws/src/ros_comm/roscpp/include/ros/timer_manager.h:475:68: error: use of undeclared identifier '_1'
-# /media/jhuai/docker/roscpp_android_ndk/ros_android/output/catkin_ws/src/ros_comm/roscpp/src/libros/connection_manager.cpp
-# add the following line to the top of the file, after the header includes:
+# 8. /catkin_ws/src/ros_comm/roscpp/include/ros/timer_manager.h:475:68: error: use of undeclared identifier '_1'
+# /catkin_ws/src/ros_comm/roscpp/src/libros/connection_manager.cpp
+# We patch the two files by adding the following lines to the top, after the header includes:
 # #include <boost/bind/bind.hpp>
 # using namespace boost::placeholders;
 
 # 9. error: /opt/ros_android/output/target/lib/libSDL.a(SDL_error.o) is incompatible with aarch64linux
-# Answer: fix by export CC.
-# To check the arch version for a library, use eg.
-# readelf -h libSDL.a | grep -i "class\|machine" | head -2
+
+# export CC.
 
 # 10. CMAKE Error:
 # CMake Error at /opt/ros_android/output/target/share/catkin/cmake/catkin_libraries.cmake:146 (get_target_property):
@@ -139,4 +143,11 @@ $my_loc/docker/run.sh -- /opt/ros_android/install.sh /opt/ros_android/output --s
 #   /opt/ros_android/output/target/share/catkin/cmake/catkin_package.cmake:102 (_catkin_package)
 #   CMakeLists.txt:81 (catkin_package)
 
-# Fixed by comment out PCL in catkin_package DEPENDS.
+# comment out PCL in catkin_package DEPENDS.
+
+# 11. use customized localization and navigation libs.
+# a. replace the amcl and move_base package in ros_android/catkin_ws/src with [our own version](git@github.com:JzHuai0108/navigation.git).
+# b. replace the geometry2 package with the indigo-android branch of [our repo](git@github.com:JzHuai0108/geometry2.git).
+# c. replace navigation_messages with the ros1 branch tag 1.14.1 from [here](git@github.com:ros-planning/navigation_msgs.git) so as
+# to be compatible with the navigation package.
+# d. replace scan_tools with the indigo branch of [our repo](https://github.com/JzHuai0108/scan_tools.git).
