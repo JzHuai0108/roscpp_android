@@ -25,6 +25,10 @@ if [ $1 == 'assimp' ]; then
     URL=https://github.com/assimp/assimp/archive/v3.1.1.tar.gz
     COMP='gz'
     src_basename='assimp-3.1.1'
+elif [ $1 == 'apr-1' ]; then
+    URL=https://dlcdn.apache.org//apr/apr-1.7.4.tar.gz
+    COMP='gz'
+    src_basename='apr-1.7.4'
 elif [ $1 == 'bfl' ]; then
     URL=https://github.com/ros-gbp/bfl-release/archive/release/indigo/bfl/0.7.0-6.tar.gz
     COMP='gz'
@@ -92,6 +96,10 @@ elif [ $1 == 'libxml2' ]; then
     URL=ftp://xmlsoft.org/libxml2/libxml2-2.9.7.tar.gz
     COMP='gz'
     src_basename='libxml2-2.9.7'
+elif [ $1 == 'Livox-SDK2' ]; then
+    URL=https://github.com/Livox-SDK/Livox-SDK2.git
+    COMP='git'
+    HASH='f1445aaeb4632195f97ad6cb4cbe9efda96f0fb2'
 elif [ $1 == 'lz4' ]; then
     # URL=https://github.com/Cyan4973/lz4/archive/r124.tar.gz
     URL=https://github.com/Cyan4973/lz4/archive/r131.tar.gz

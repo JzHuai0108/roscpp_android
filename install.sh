@@ -236,6 +236,8 @@ fi
 [ -f $TARGET_DIR/lib/libogg.a ] || run_cmd build_library_with_toolchain ogg $LIBS_DIR/ogg
 [ -f $TARGET_DIR/lib/libvorbis.a ] || run_cmd build_library_with_toolchain vorbis $LIBS_DIR/vorbis
 [ -f $TARGET_DIR/lib/libtheora.a ] || run_cmd build_library_with_toolchain theora $LIBS_DIR/theora
+[ -f $TARGET_DIR/lib/liblivox_lidar_sdk_static.a ] || run_cmd build_library_with_cmake Livox-SDK2 $LIBS_DIR/Livox-SDK2
+[ -f $TARGET_DIR/lib/libapr-1.a ] || run_cmd build_library_with_toolchain apr-1 $LIBS_DIR/apr-1
 
 echo
 echo -e '\e[34mCross-compiling ROS.\e[39m'

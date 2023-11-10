@@ -56,6 +56,8 @@ run_cmd() {
 [ -d $lib_prefix/flann ] || run_cmd get_library flann $lib_prefix
 [ -d $lib_prefix/libiconv ] || run_cmd get_library libiconv $lib_prefix
 [ -d $lib_prefix/libxml2 ] || run_cmd get_library libxml2 $lib_prefix
+[ -d $lib_prefix/apr-1 ] || run_cmd get_library apr-1 $lib_prefix
+[ -d $lib_prefix/Livox-SDK2 ] || run_cmd get_library Livox-SDK2 $lib_prefix
 [ -d $lib_prefix/lz4 ] || run_cmd get_library lz4 $lib_prefix
 [ -d $lib_prefix/ogg ] || run_cmd get_library ogg $lib_prefix
 [ -d $lib_prefix/pcl ] || run_cmd get_library pcl $lib_prefix

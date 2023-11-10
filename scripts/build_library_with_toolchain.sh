@@ -54,6 +54,8 @@ configure_options="--prefix=$TARGET_DIR --disable-shared --enable-static --build
 # Overwrite/extend for specific packages
 if [ "$1" == 'poco' ]; then
     configure_options="--config=Android_static --no-samples --no-tests"
+elif [ "$1" == 'apr-1' ]; then
+    configure_options="$configure_options ac_cv_file__dev_zero=yes ac_cv_func_setpgrp_void=yes apr_cv_process_shared_works=yes apr_cv_mutex_robust_shared=yes apr_cv_tcp_nodelay_with_cork=yes"
 elif [ "$1" == 'curl' ]; then
     configure_options="$configure_options --without-ssl --disable-tftp --disable-sspi --disable-ipv6 --disable-ldaps --disable-ldap --disable-telnet --disable-pop3 --disable-ftp --disable-imap --disable-smtp --disable-pop3 --disable-rtsp --disable-ares --without-ca-bundle --disable-warnings --disable-manual --without-nss --without-random"
 elif [ "$1" == 'libxml2' ]; then
