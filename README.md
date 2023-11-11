@@ -37,7 +37,7 @@ sequentially, you just have to give it a prefix path:
 
     ./install.sh /path/to/workspace
 
-### Building app samples
+### Building app samples (TODO: This is not working but does not matter.)
 
 If you also want to build the samples, use:
 
@@ -45,6 +45,12 @@ If you also want to build the samples, use:
 
 You can find the resulting apks inside `/path/to/workspace/target/apks/name_of_the_sample_app/apk_file`.
 Specific instructions about how to use the samples are located inside: `files/name_of_the_sample_app/README.md`
+
+## Clean up the workspace
+```
+./clean_catkin_build.sh
+# Note this only cleans the catkin workspace, but keeps the build folders of foundational libraries intact, such as poco, yaml-cpp.
+```
 
 ## Adding new packages or dependencies
 

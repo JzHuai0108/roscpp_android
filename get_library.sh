@@ -97,9 +97,9 @@ elif [ $1 == 'libxml2' ]; then
     COMP='gz'
     src_basename='libxml2-2.9.7'
 elif [ $1 == 'Livox-SDK2' ]; then
-    URL=https://github.com/Livox-SDK/Livox-SDK2.git
+    URL=https://github.com/JzHuai0108/Livox-SDK2.git
     COMP='git'
-    HASH='f1445aaeb4632195f97ad6cb4cbe9efda96f0fb2'
+    HASH='93e370bbcbb55c8bcd39441a76112f2350861ee5'
 elif [ $1 == 'lz4' ]; then
     # URL=https://github.com/Cyan4973/lz4/archive/r124.tar.gz
     URL=https://github.com/Cyan4973/lz4/archive/r131.tar.gz
