@@ -151,3 +151,6 @@ $my_loc/docker/run.sh -- /opt/ros_android/install.sh /opt/ros_android/output --s
 # c. replace navigation_messages with the ros1 branch tag 1.14.1 from [here](git@github.com:ros-planning/navigation_msgs.git) so as
 # to be compatible with the navigation package.
 # d. replace scan_tools with the indigo branch of [our repo](https://github.com/JzHuai0108/scan_tools.git).
+
+# 12. /opt/ros_android/output/catkin_ws/src/FAST_LIO/include/common_lib.h:8:10: fatal error: 'fast_lio/Pose6D.h' file not found
+# run dockerized_install.sh again.

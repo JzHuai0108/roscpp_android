@@ -138,6 +138,9 @@ catkin config \
     -DBUILD_SHARED_LIBS=0 \
     -DBoost_NO_BOOST_CMAKE=ON -DBOOST_ROOT=$TARGET_PATH -DANDROID=TRUE \
     -DBOOST_INCLUDEDIR=$TARGET_PATH/include/boost -DBOOST_LIBRARYDIR=$TARGET_PATH/lib \
+    -DWITH_OPENEXR=OFF \
     -DBUILD_TESTING=OFF -DCATKIN_ENABLE_TESTING=OFF
+
+# -DWITH_OPENEXR https://stackoverflow.com/questions/55841839/how-to-compile-opencv-application-using-opencv-static-libs
 
 catkin build --force-cmake --summary $VERBOSE "${CATKIN_ARGS[@]}" -DROS_EDITION=ROS1 -DCMAKE_PREFIX_PATH=$TARGET_PATH

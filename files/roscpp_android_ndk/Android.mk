@@ -8,10 +8,10 @@ stlibs := xmlrpcpp Bullet3Geometry  boost_stacktrace_basic  diagnostic_aggregato
  move_base  boost_container  joint_state_listener  boost_context  bondcpp  boost_math_c99f  camera_info_manager  opencv_calib3d3  \
  boost_math_c99l  navfn  tinyxml2  pcl_io_ply  boost_iostreams  opencv_xfeatures2d3  opencv_stereo3  urdfdom_world  boost_thread  \
  eigen_conversions  roslib  rospack  boost_program_options  boost_coroutine  pcl_common  opencv_xphoto3  PocoNet  boost_timer  Bullet3Dynamics  \
- opencv_ml3  boost_contract  ogg  opencv_plot3  collada-dom2.4-dp  tf tf2 rosbag_storage bz2 opencv_rgbd3  boost_type_erasure  interactive_markers  \
+ opencv_ml3  boost_contract  ogg  opencv_plot3  collada-dom2.4-dp  tf tf2 rosbag_storage bz2 opencv_rgbd3  boost_type_erasure  interactive_markers fast_csm \
  boost_log_setup  tinyxml  boost_atomic  flann_cpp_s-gd  pcl_search  laser_geometry  boost_random  pcl_ros_surface   boost_date_time  \
  opencv_structured_light3  urdf  theora  opencv_optflow3  params  qhullcpp  uuid  pcl_surface  map_server2  map_server_image_loader \
- rosconsole_backend_interface  urdfdom_model  LinearMath  tf2_ros livox_lidar_sdk_static  Bullet3OpenCL_clew  vorbisenc  pcl_features  pluginlib_tutorials  \
+ rosconsole_backend_interface  urdfdom_model  LinearMath  tf2_ros fastlio_tam livox_ros_driver2 livox_lidar_sdk_static  Bullet3OpenCL_clew  vorbisenc  pcl_features  pluginlib_tutorials  \
  tf_conversions  opencv_fuzzy3  pcl_registration  opencv_saliency3  boost_test_exec_monitor  theoradec  boost_stacktrace_noop  \
  opencv_img_hash3  opencv_ccalib3  boost_system  PocoUtild  opencv_tracking3  opencv_superres3 opencv_core3  roslz4  lz4  opencv_surface_matching3  \
  pointcloud_filters  roscpp_serialization  opencv_phase_unwrapping3  compressed_image_transport  compressed_depth_image_transport  \
@@ -31,6 +31,8 @@ stlibs := xmlrpcpp Bullet3Geometry  boost_stacktrace_basic  diagnostic_aggregato
  urdfdom_model_state  boost_filesystem  geometric_shapes  boost_chrono  boost_serialization  PocoNetd  dwa_local_planner  topic_tools  \
  laser_scan_matcher polar_scan_matcher csm-static
 
+opencvdeplibs := libpng libjpeg libtiff libwebp libjasper
+
 define include_shlib
 $(eval include $$(CLEAR_VARS))
 $(eval LOCAL_MODULE := $(1))
@@ -48,10 +50,11 @@ $(foreach stlib,$(stlibs),$(eval $(call include_stlib,$(stlib))))
 
 include $(CLEAR_VARS)
 LOCAL_MODULE    := roscpp_android_ndk
-LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/include
+LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/include $(LOCAL_PATH)/include/eigen3
 LOCAL_EXPORT_CPPFLAGS := -fexceptions -frtti
 LOCAL_CPP_FEATURES := exceptions
 LOCAL_EXPORT_LDLIBS := $(foreach l,$(stlibs),-l$(l)) -L$(LOCAL_PATH)/lib -lz
+LOCAL_EXPORT_LDLIBS += $(foreach l,$(opencvdeplibs),-l$(l))
 LOCAL_EXPORT_LDLIBS += -L$(LOCAL_PATH)/share/OpenCV-3.3.1-dev/3rdparty/lib -ltegra_hal -lcpufeatures
 LOCAL_STATIC_LIBRARIES := $(stlibs) c++_static
 
