@@ -153,4 +153,11 @@ $my_loc/docker/run.sh -- /opt/ros_android/install.sh /opt/ros_android/output --s
 # d. replace scan_tools with the indigo branch of [our repo](https://github.com/JzHuai0108/scan_tools.git).
 
 # 12. /opt/ros_android/output/catkin_ws/src/FAST_LIO/include/common_lib.h:8:10: fatal error: 'fast_lio/Pose6D.h' file not found
+# catkin build fast_lio # only build fast_lio in build_catkin_worksapce.sh.
 # run dockerized_install.sh again.
+
+# 13. pcl_macros.h:358:4: error: aligned_malloc not supported on your platform
+# set(CMAKE_CXX_STANDARD 14)
+# set(CMAKE_CXX_STANDARD_REQUIRED ON)
+# set(CMAKE_CXX_EXTENSIONS OFF)
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -pthread -std=c++11 -fexceptions")
