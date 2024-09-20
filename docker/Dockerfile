@@ -4,7 +4,7 @@ MAINTAINER Gary Servin <gary@ekumenlabs.com>
 MAINTAINER Juan Ignacio Ubeira <jubeira@ekumenlabs.com>
 
 # Install basic tools
-RUN apt-get update && apt-get install -y wget git unzip tmux python-catkin-tools python-lxml automake autoconf
+RUN apt-get update && apt-get install -y --allow-unauthenticated wget git unzip tmux python-catkin-tools python-lxml automake autoconf
 
 # Install Android NDK
 WORKDIR /opt/android/sdk
@@ -32,13 +32,13 @@ RUN unzip sdk-tools-linux-4333796.zip -d /opt/android/sdk
 # RUN mv /opt/android/sdk/cmdline-tools /opt/android/sdk/tools
 
 RUN yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses
-RUN yes | $ANDROID_HOME/tools/bin/sdkmanager "build-tools;26.0.2" "build-tools;28.0.2" "build-tools;29.0.2" "build-tools;33.0.2" "platform-tools" "platforms;android-26" "platforms;android-28" "platforms;android-31" "cmake;3.6.4111459" --sdk_root=/opt/android/sdk
-ENV PATH /opt/android/sdk/tools:/opt/android/sdk/platform-tools:/opt/android/sdk/cmake/3.6.4111459/bin:$PATH
+RUN yes | $ANDROID_HOME/tools/bin/sdkmanager "build-tools;26.0.2" "build-tools;28.0.2" "build-tools;29.0.2" "build-tools;33.0.2" "platform-tools" "platforms;android-26" "platforms;android-28" "platforms;android-31" "cmake;3.10.2.4988404" --sdk_root=/opt/android/sdk
+ENV PATH /opt/android/sdk/tools:/opt/android/sdk/platform-tools:/opt/android/sdk/cmake/3.10.2.4988404/bin:$PATH
 
 # Install Python libraries
 RUN apt-get install python-lxml -y
 RUN apt-get install libtool -y
-RUN apt-get install python-wstool -y
+RUN apt-get install python-wstool -y --allow-unauthenticated
 RUN apt-get install libxext-dev -y  # This is a header only library needed by the SDL video module in ndk-r21e and r23c.
 RUN apt-get install vim -y  # for debugging within a docker container.
 

@@ -11,7 +11,7 @@ stlibs := xmlrpcpp Bullet3Geometry  boost_stacktrace_basic  diagnostic_aggregato
  opencv_ml3  boost_contract  ogg  opencv_plot3  collada-dom2.4-dp  tf tf2 rosbag_storage bz2 opencv_rgbd3  boost_type_erasure  interactive_markers fast_csm \
  boost_log_setup  tinyxml  boost_atomic  flann_cpp_s-gd  pcl_search  laser_geometry  boost_random  pcl_ros_surface   boost_date_time  \
  opencv_structured_light3  urdf  theora  opencv_optflow3  params  qhullcpp  uuid  pcl_surface  map_server2  map_server_image_loader \
- rosconsole_backend_interface  urdfdom_model  LinearMath  tf2_ros fastlio_tam livox_ros_driver2 livox_lidar_sdk_static  Bullet3OpenCL_clew  vorbisenc  pcl_features  pluginlib_tutorials  \
+ rosconsole_backend_interface  urdfdom_model  LinearMath  tf2_ros fastlio_tam faster_lio livox_ros_driver2 livox_lidar_sdk_static  Bullet3OpenCL_clew  vorbisenc  pcl_features  pluginlib_tutorials  \
  tf_conversions  opencv_fuzzy3  pcl_registration  opencv_saliency3  boost_test_exec_monitor  theoradec  boost_stacktrace_noop  \
  opencv_img_hash3  opencv_ccalib3  boost_system  PocoUtild  opencv_tracking3  opencv_superres3 opencv_core3  roslz4  lz4  opencv_surface_matching3  \
  pointcloud_filters  roscpp_serialization  opencv_phase_unwrapping3  compressed_image_transport  compressed_depth_image_transport  \
