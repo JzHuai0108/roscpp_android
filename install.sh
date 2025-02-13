@@ -218,6 +218,8 @@ fi
 [ -f $TARGET_DIR/lib/libtinyxml2.a ] || run_cmd build_library_with_cmake tinyxml2 $LIBS_DIR/tinyxml2
 [ -f $TARGET_DIR/lib/libconsole_bridge.a ] || run_cmd build_library_with_cmake console_bridge $LIBS_DIR/console_bridge
 [ -f $TARGET_DIR/lib/liblz4.a ] || run_cmd build_library_with_cmake lz4 $LIBS_DIR/lz4/cmake_unofficial
+[ -f $TARGET_DIR/lib/jsoncpp.a ] || run_cmd build_library_with_cmake jsoncpp $LIBS_DIR/jsoncpp
+[ -f $TARGET_DIR/lib/spdlog.a ] || run_cmd build_library_with_cmake spdlog $LIBS_DIR/spdlog
 [ -f $TARGET_DIR/lib/libcurl.a ] || run_cmd build_library_with_toolchain curl $LIBS_DIR/curl
 [ -f $TARGET_DIR/include/urdf_model/model.h ] || run_cmd build_library_with_cmake urdfdom_headers $LIBS_DIR/urdfdom_headers
 [ -f $TARGET_DIR/lib/liburdfdom_model.a ] || run_cmd build_library_with_cmake urdfdom $LIBS_DIR/urdfdom

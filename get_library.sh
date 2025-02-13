@@ -79,6 +79,10 @@ elif [ $1 == 'flann' ]; then
     URL=https://github.com/JzHuai0108/flann_cmake.git
     COMP='git'
     HASH='bcf4e231bd8e5b79caba6ff449a7a85ab7b33210'
+elif [ $1 == 'jsoncpp' ]; then
+    URL=https://github.com/open-source-parsers/jsoncpp/archive/refs/tags/1.9.5.tar.gz
+    COMP='gz'
+    src_basename=jsoncpp-1.9.5
 elif [ $1 == 'libccd' ]; then
     URL=https://github.com/danfis/libccd/archive/v2.0.tar.gz
     COMP='gz'
@@ -115,6 +119,10 @@ elif [ $1 == 'ogg' ]; then
 elif [ $1 == 'opencv' ]; then
     URL=https://github.com/Itseez/opencv/archive/2.4.9.tar.gz
     COMP='gz'
+elif [ $1 == 'openssl' ]; then
+    URL=https://github.com/openssl/openssl/releases/download/OpenSSL_1_0_1g/openssl-1.0.1g.tar.gz
+    COMP='gz'
+    src_basename=openssl-1.0.1g
 elif [ $1 == 'orocos_kdl' ]; then
     URL=https://github.com/smits/orocos-kdl-release/archive/release/indigo/orocos_kdl/1.3.0-0.tar.gz
     COMP='gz'
@@ -145,6 +153,10 @@ elif [ $1 == 'sdl-image' ]; then
     URL=http://hg.libsdl.org/SDL_image/archive/d46c630f2cd6.tar.gz
     COMP='gz'
     src_basename='SDL_image-220be3fd43a85921138072ed847b7e4bc5ad163e'
+elif [ $1 == 'spdlog' ]; then
+    URL=https://github.com/gabime/spdlog/archive/refs/tags/v1.14.1.tar.gz
+    COMP='gz'
+    src_basename='spdlog-1.14.1'
 elif [ $1 == 'theora' ]; then
     URL=http://downloads.xiph.org/releases/theora/libtheora-1.1.1.tar.bz2
     COMP='bz2'

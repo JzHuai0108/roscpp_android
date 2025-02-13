@@ -10,7 +10,7 @@ set -e
 
 source $SCRIPT_DIR/utils.sh
 
-if [ $# != 2 ] || [ "$1" == '-h' ] || [ $1 == '--help' ]; then
+if [ $# -eq 0 ] || [ "$1" == '-h' ] || [ $1 == '--help' ]; then
     echo "Usage: $0 library library_source_dir"
     echo "  example: $0 tinyxml /home/user/ros_android/output/libs/tinyxml"
     exit 1
