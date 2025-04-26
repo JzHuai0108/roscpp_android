@@ -126,6 +126,10 @@ elif [ $1 == 'openssl' ]; then
 elif [ $1 == 'orocos_kdl' ]; then
     URL=https://github.com/smits/orocos-kdl-release/archive/release/indigo/orocos_kdl/1.3.0-0.tar.gz
     COMP='gz'
+elif [ $1 == 'libpcap' ]; then
+    URL=https://www.tcpdump.org/release/libpcap-1.10.5.tar.xz
+    COMP='xz'
+    src_basename=libpcap-1.10.5
 elif [ $1 == 'pcl' ]; then
     # URL=https://github.com/chadrockey/pcl.git
     URL=https://github.com/PointCloudLibrary/pcl/archive/pcl-1.10.1.tar.gz
@@ -207,6 +211,8 @@ if [ $COMP == 'gz' ]; then
     download_gz_mv $URL $prefix $src_basename $dst_basename
 elif [ $COMP == 'bz2' ]; then
     download_bz2_mv $URL $prefix $src_basename $dst_basename
+elif [ $COMP == 'xz' ]; then
+    download_xz_mv $URL $prefix $src_basename $dst_basename
 elif [ $COMP == 'git' ];then
     git clone $URL $prefix/$1
 fi

@@ -25,6 +25,11 @@ Also, we updated the package paths for convenience with download_ros_tar.py.
 
 3. We write a python script download_opencv_deps.py to download the opencv dependency files such as xfeature resources, and put them to /docker/roscpp_android_ndk/ros_android/output/catkin_ws/src/opencv3/.cache.
 
+## setup the ndk project for android
+```
+./setup_ndk_project.sh /docker/roscpp_android_ndk/ros_android/output 0
+```
+
 ## [Installation - under the hood](#installation)
 
 Build docker image and run it:

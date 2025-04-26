@@ -62,6 +62,7 @@ run_cmd() {
 [ -d $lib_prefix/lz4 ] || run_cmd get_library lz4 $lib_prefix
 [ -d $lib_prefix/ogg ] || run_cmd get_library ogg $lib_prefix
 [ -d $lib_prefix/openssl ] || run_cmd get_library openssl $lib_prefix
+[ -d $lib_prefix/libpcap ] || run_cmd get_library libpcap $lib_prefix
 [ -d $lib_prefix/pcl ] || run_cmd get_library pcl $lib_prefix
 [ -d $lib_prefix/poco ] || run_cmd get_library poco $lib_prefix
 [ -d $lib_prefix/qhull ] || run_cmd get_library qhull $lib_prefix

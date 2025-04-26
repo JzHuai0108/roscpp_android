@@ -231,6 +231,7 @@ fi
 [ -f $TARGET_DIR/lib/libqhullstatic.a ] || run_cmd build_library_with_cmake qhull $LIBS_DIR/qhull
 [ -f $TARGET_DIR/lib/libyaml-cpp.a ] || run_cmd build_library_with_cmake yaml-cpp $LIBS_DIR/yaml-cpp
 [ -f $TARGET_DIR/lib/libflann_cpp_s.a ] || run_cmd build_library_with_cmake flann $LIBS_DIR/flann
+[ -f $TARGET_DIR/lib/libpcap.a ] || run_cmd build_library_with_cmake libpcap $LIBS_DIR/libpcap
 [ -f $TARGET_DIR/lib/libpcl_common.a ] || run_cmd build_library_with_cmake pcl $LIBS_DIR/pcl
 [ -f $TARGET_DIR/lib/libBulletSoftBody.a ] || run_cmd build_library_with_cmake bullet $LIBS_DIR/bullet
 [ -f $TARGET_DIR/lib/libSDL.a ] || run_cmd build_library_with_toolchain sdl $LIBS_DIR/sdl

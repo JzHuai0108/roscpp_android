@@ -42,6 +42,13 @@ download_gz_mv() {
     mv $2/$3 $2/$4
 }
 
+download_xz_mv() {
+    # usage: download_gz_mv <url> <target_dir> <src_basename> <dst_basename>
+    echo "downloading $1"
+    ( cmd_exists curl && curl -L $1 || wget -O - $1 ) | tar Jx -C $2
+    mv $2/$3 $2/$4
+}
+
 download_zip() {
     cmd_exists unzip || die 'could not find unzip'
 

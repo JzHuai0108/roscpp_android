@@ -46,6 +46,8 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
 
 # Use ccache
 RUN apt-get update && apt-get install -y ccache
+RUN apt-get update && apt-get install -y flex bison # for libpcap code generation
+
 ENV USE_CCACHE 1
 ENV NDK_CCACHE /usr/bin/ccache
 ENV CCACHE_DIR /opt/roscpp_output/ccache
