@@ -113,6 +113,23 @@ export TARGET_DIR=$OUTPUT_DIR/target
 export LIBS_DIR=$OUTPUT_DIR/libs
 source $SCRIPT_DIR/utils.sh
 
+# Ensure required build tools are available inside container
+ensure_cmake() {
+    if command -v cmake >/dev/null 2>&1; then
+        return
+    fi
+
+    echo "-- cmake not found. Installing via apt-get..."
+    if command -v apt-get >/dev/null 2>&1; then
+        export DEBIAN_FRONTEND=noninteractive
+        apt-get update && apt-get install -y cmake
+    else
+        die "cmake was not found and automatic installation is not supported on this platform. Please install cmake and rerun."
+    fi
+}
+
+ensure_cmake
+
 if [[ $skip -eq 1 ]]; then
    echo "-- Skiping projects update"
 else

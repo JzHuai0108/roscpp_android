@@ -26,7 +26,7 @@ if [ $1 == 'assimp' ]; then
     COMP='gz'
     src_basename='assimp-3.1.1'
 elif [ $1 == 'apr-1' ]; then
-    URL=https://dlcdn.apache.org//apr/apr-1.7.4.tar.gz
+    URL=https://archive.apache.org/dist/apr/apr-1.7.4.tar.gz
     COMP='gz'
     src_basename='apr-1.7.4'
 elif [ $1 == 'bfl' ]; then
@@ -97,7 +97,8 @@ elif [ $1 == 'log4cxx' ]; then
     COMP='gz'
 elif [ $1 == 'libxml2' ]; then
     # URL=ftp://xmlsoft.org/libxml2/libxml2-2.9.1.tar.gz
-    URL=ftp://xmlsoft.org/libxml2/libxml2-2.9.7.tar.gz
+    URL=http://xmlsoft.org/sources/libxml2-2.9.7.tar.gz
+
     COMP='gz'
     src_basename='libxml2-2.9.7'
 elif [ $1 == 'Livox-SDK2' ]; then

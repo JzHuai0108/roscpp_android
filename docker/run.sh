@@ -2,7 +2,7 @@
 
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 REPO_ROOT=$SCRIPTPATH/../
-IMAGE=android_ndk
+IMAGE=menny/android_ndk
 
 DOCKEROPTS=()
 while [ $# -gt 0 ]; do
@@ -31,6 +31,7 @@ done
 set -x
 docker run \
   -v ${REPO_ROOT}:/opt/ros_android \
+  -v ~/docker-share:/docker \
   --privileged \
   -it \
   "${DOCKEROPTS[@]}" \

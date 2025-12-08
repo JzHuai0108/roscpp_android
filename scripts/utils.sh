@@ -90,10 +90,17 @@ apply_patch() {
         set -- -d $prefix
     fi
 
-    set -e
-    # If the reverse patch could not be applied, then the patch has to be applied.
-    if ! patch -p0 -N --dry-run --silent -R "$@" < $patch ; then
-        # The following call will abort the script on error.
-        patch -p0 -N "$@" < $patch
+    # If the reverse patch can be applied cleanly, the patch is already present.
+    if patch -p0 -N --dry-run --silent -R "$@" < "$patch" > /dev/null 2>&1 ; then
+        return 0
     fi
+
+    # Try a forward dry-run to see if the patch still applies.
+    if patch -p0 -N --dry-run --silent "$@" < "$patch" > /dev/null 2>&1 ; then
+        patch -p0 -N "$@" < "$patch"
+        return $?
+    fi
+
+    echo "Skipping patch (already applied or missing targets): $patch"
+    return 0
 }

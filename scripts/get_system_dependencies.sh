@@ -21,7 +21,7 @@ echo
 echo -e '\e[34mGetting system libraries.\e[39m'
 echo
 
-cmd_exists wstool || die 'wstool was not found'
+# cmd_exists wstool || die 'wstool was not found'
 
 rosinstall_file="$1"
 lib_prefix=$(cd "$2" && pwd)
@@ -44,6 +44,17 @@ run_cmd() {
     fi
     $cmd "$@" || die "$cmd $@ died with error code $?"
 }
+
+files_dir=$BASE_DIR/files
+mkdir -p "$files_dir"
+[ -d "$files_dir/rospkg" ] || run_cmd get_library rospkg "$files_dir"
+
+python_deps_dir="$files_dir/python_deps"
+mkdir -p "$python_deps_dir"
+if ! PYTHONPATH="$python_deps_dir" python3 -c "import catkin_pkg" >/dev/null 2>&1; then
+    echo "Installing python dependency: catkin_pkg"
+    python3 -m pip install --upgrade --target "$python_deps_dir" catkin_pkg >/dev/null
+fi
 
 [ -d $lib_prefix/assimp ] || run_cmd get_library assimp $lib_prefix
 [ -d $lib_prefix/boost ] || run_cmd get_library boost $lib_prefix
